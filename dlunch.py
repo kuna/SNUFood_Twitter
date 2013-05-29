@@ -16,7 +16,6 @@ def parse(when):
 
     if (day > 4):
         res.append(u"학교 안 간다")
-        res.append(u"학교 안 간다")
         return res
 
     # 301
@@ -90,20 +89,27 @@ def startBot():
                     res = parse('lunch')
                     if (res == None):
                         print 'failed to parse ...'
-
-                    api.update_status(u"@kuna_KR 오늘 점심(301동): " + res[0] + u" #bot")
-                    api.update_status(u"@kuna_KR 오늘 점심(302동): " + res[1] + u" #bot")
+                    try:
+                        api.update_status(u"@kuna_KR 오늘 점심(301동): " + res[0] + u" #bot")
+                        api.update_status(u"@kuna_KR 오늘 점심(302동): " + res[1] + u" #bot")
+                    except Exception, e:
+                        print e
+                        
                     isLunch = True
 
-            elif (timeStamp == '5:30'):
+            elif (timeStamp == '17:30'):
                 if (not isDinner):
                     print 'its dinnertime!'
                     res = parse('dinner')
                     if (res == None):
                         print 'failed to parse ...'
 
-                    api.update_status(u"@kuna_KR 오늘 저녁(301동): " + res[0] + u" #bot")
-                    api.update_status(u"@kuna_KR 오늘 저녁(302동): " + res[1] + u" #bot")
+                    try:
+                        api.update_status(u"@kuna_KR 오늘 저녁(301동): " + res[0] + u" #bot")
+                        api.update_status(u"@kuna_KR 오늘 저녁(302동): " + res[1] + u" #bot")
+                    except Exception, e:
+                        print e
+                        
                     isDinner = True
             else:
                 isLunch = False
